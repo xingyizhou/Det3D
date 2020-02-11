@@ -38,7 +38,7 @@ class KittiDataset(PointCloudDataset):
         self._num_point_features = __class__.NumPointFeatures
         # print("remain number of infos:", len(self._kitti_infos))
         self._class_names = class_names
-        self.plane_dir = "/data/Datasets/KITTI/Kitti/object/training/planes"
+        self.plane_dir = "data/KITTI/training/planes"
 
     def __len__(self):
         if not hasattr(self, "_kitti_infos"):
@@ -194,7 +194,8 @@ class KittiDataset(PointCloudDataset):
         return results, dt_annos
 
     def __getitem__(self, idx):
-        return self.get_sensor_data(idx, with_gp=True)
+        # return self.get_sensor_data(idx, with_gp=True)
+        return self.get_sensor_data(idx, with_gp=False)
 
     def get_sensor_data(self, idx, with_image=False, with_gp=False):
 

@@ -116,12 +116,12 @@ test_cfg = dict(
 
 # dataset settings
 dataset_type = "KittiDataset"
-data_root = "/data/Datasets/KITTI/Kitti/object"
+data_root = "data/KITTI/"
 
 db_sampler = dict(
     type="GT-AUG",
     enable=True,
-    db_info_path="/data/Datasets/KITTI/Kitti/object/dbinfos_train.pkl",
+    db_info_path="data/KITTI/dbinfos_train.pkl",
     sample_groups=[dict(Car=15,),],
     db_prep_steps=[
         dict(filter_by_min_num_points=dict(Car=5,)),
@@ -180,8 +180,8 @@ test_pipeline = [
     dict(type="Reformat"),
 ]
 
-train_anno = "/data/Datasets/KITTI/Kitti/object/kitti_infos_train.pkl"
-val_anno = "/data/Datasets/KITTI/Kitti/object/kitti_infos_val.pkl"
+train_anno = "data/KITTI/kitti_infos_train.pkl"
+val_anno = "data/KITTI/kitti_infos_val.pkl"
 test_anno = None
 
 data = dict(
@@ -251,7 +251,8 @@ total_epochs = 100
 device_ids = range(8)
 dist_params = dict(backend="nccl", init_method="env://")
 log_level = "INFO"
-work_dir = "/data/Outputs/det3d_Outputs/Point_Pillars"
+work_dir = "output/Point_Pillars"
 load_from = None
 resume_from = None
-workflow = [("train", 5), ("val", 1)]
+# workflow = [("train", 5), ("val", 1)]
+workflow = [("train", 1)]
